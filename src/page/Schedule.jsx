@@ -1,9 +1,14 @@
-import { Button, InputGroup, FormControl, Placeholder, Table } from 'react-bootstrap';
+import { Button, ModalHeader, ModalBody, ModalDialog, ModalFooter, Table, ModalTitle } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import Subject from './../components/Subject';
+import { useParams } from "react-router-dom"
+import Footer from '../components/Footer';
 
-const Schedule = () =>{
+const Schedule = () => {
+  const subjectss = useParams();
+
+  console.log(subjectss);
   const [subjects, setSubjects] = useState([
     {
       id: "1",
@@ -32,7 +37,7 @@ const Schedule = () =>{
 
     return(
         <div className="App">
-          <div className="container">
+          <div className="container mt-5">
             <Table striped bordered hover className='mt-5'>
                 <thead>
                   <tr>
@@ -50,8 +55,25 @@ const Schedule = () =>{
                   }) }
                 </tbody>
               </Table>
+              <Button variant="danger" style={{width: "100%"}} onclick="">Delete this schedule</Button>
+              <ModalDialog style={{visibility: "show"}}>
+                <ModalHeader closeButton>
+                  <ModalTitle>Confirm to delete this schedule.</ModalTitle>
+                </ModalHeader>
+
+                <ModalBody>
+                  <p>Please choose your choice.</p>
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button variant="secondary">Close</Button>
+                  <Button variant="primary">Delete</Button>
+                </ModalFooter>
+            </ModalDialog>
           </div>
+          <Footer/>
       </div>
+
     )
 }
 

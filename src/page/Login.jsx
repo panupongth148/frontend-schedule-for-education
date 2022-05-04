@@ -2,6 +2,7 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 const Login = () =>{
   const [username, setUsername] = useState('');
@@ -42,6 +43,7 @@ const Login = () =>{
             </Button>
             </div>
           </div>
+          <Footer/>
       </div>
     )
 }

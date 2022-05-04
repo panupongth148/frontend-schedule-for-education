@@ -1,5 +1,6 @@
 import { Button, InputGroup, FormControl, Placeholder } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from '../components/Footer';
 
 const AddSchedule = () =>{
     return(
@@ -15,6 +16,7 @@ const AddSchedule = () =>{
               <Button className="mt-1 " style={{backgroundColor: "#55D8C1",height: "120px", fontSize: "70px"}}>Add</Button>
             </div>
           </div>
+          <Footer/>
       </div>
     )
 }

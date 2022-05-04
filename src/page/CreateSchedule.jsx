@@ -1,6 +1,7 @@
 import { Button, InputGroup, FormControl, Placeholder } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const CreateSchedule = () =>{
     return(
@@ -18,6 +19,7 @@ const CreateSchedule = () =>{
             </Button>
             </div>
           </div>
+          <Footer/>
       </div>
     )
 }
