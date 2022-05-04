@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const CreateScheduleNext = () =>{
     return(
         <div className="App">
-          <div className='container' style={{backgroundColor: "#AB46D2"}}>
+          <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
             <h1 style={{fontSize: "80px"}}>Create Test Schedule</h1>
             <ListGroup >
                 <ListGroup.Item style={{height: "100px", fontSize: "50px", backgroundColor: "#FCF69C"}}>

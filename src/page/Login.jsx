@@ -22,7 +22,7 @@ const Login = () =>{
 
     return(
         <div className="App">
-          <div className='container' style={{backgroundColor: "#AB46D2"}}>
+          <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
             <h1 style={{fontSize: "80px"}}>Login to my schedule</h1>
             <InputGroup className="mb-3 mt-3">
               <InputGroup.Text style={{backgroundColor: "#FCF69C", width: "150px", fontSize: "30px"}}>Username</InputGroup.Text>

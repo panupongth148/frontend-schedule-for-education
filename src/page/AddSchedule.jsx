@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const AddSchedule = () =>{
     return(
         <div className="App">
-          <div className='container' style={{backgroundColor: "#AB46D2"}}>
+          <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
             <h1 style={{fontSize: "80px"}}>Add Schedule</h1>
             <InputGroup className="mb-3">
               <InputGroup.Text style={{backgroundColor: "#FCF69C"}}>Schedule Code</InputGroup.Text>

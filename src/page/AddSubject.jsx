@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const AddSubject = () =>{
     return(
         <div className="App">
-          <div className='container' style={{backgroundColor: "#AB46D2"}}>
+          <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
             <h1 style={{fontSize: "80px"}}>Create Test Schecule</h1>
             <Dropdown>
               <Dropdown.Toggle style={{width: "100%", height: "60px"}} variant="success" id="dropdown-basic">
