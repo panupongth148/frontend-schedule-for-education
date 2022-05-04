@@ -1,9 +1,32 @@
 import { Button, InputGroup, FormControl, Placeholder, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import Subject from './../components/Subject';
 
 const Schedule = () =>{
-  const [subjects, setSubjects] = useState([]);
+  const [subjects, setSubjects] = useState([
+    {
+      id: "1",
+      name: "Math",
+      day: "Monday",
+      time: "13.00-16.00",
+      link: "www.math.com"
+    },
+    {
+      id: "2",
+      name: "Human interface developer",
+      day: "Wednesday",
+      time: "9.00-12.00",
+      link: "www.Humaninterfacedeveloper.com"
+    },
+    {
+      id: "3",
+      name: "Software development tools",
+      day: "Friday",
+      time: "13.00-16.00",
+      link: "www.Softwaredevelopmenttools.com"
+    },
+  ]);
 
   // axios
 
@@ -20,28 +43,14 @@ const Schedule = () =>{
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Monday</td>
-                    <td>Human interface developer</td>
-                    <td>14.00</td>
-                    <td><a href="www.google.com">www.Humaninterfacedeveloper.com</a></td>
-                  </tr>
-                  <tr>
-                  <td>Tuesday</td>
-                    <td>Software development tools</td>
-                    <td>12.00</td>
-                    <td><a href="www.google.com">www.Softwaredevelopmenttools.com</a></td>
-                  </tr>
-                  <tr>
-                  <td>Saturday</td>
-                    <td>Information Technology Project Management</td>
-                    <td>18.00</td>
-                    <td><a href="www.google.com">www.InformationTechnologyProjectManagement.com</a></td>
-                  </tr>
+                  { subjects.map((subject) => {
+                    return (
+                      <Subject key={subject.id} subject={subject} />
+                    )
+                  }) }
                 </tbody>
               </Table>
           </div>
-            
       </div>
     )
 }
