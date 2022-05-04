@@ -1,8 +1,7 @@
-import logo from '../logo.svg';
 import { Button, InputGroup, FormControl, Placeholder, Dropdown, Form, Control } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const homePage = () =>{
+const AddSubject = () =>{
     return(
         <div className="App">
           <div className='container' style={{backgroundColor: "#AB46D2"}}>
@@ -41,4 +40,4 @@ const homePage = () =>{
     )
 }
 
-export default homePage
+export default AddSubject

@@ -1,9 +1,14 @@
-import logo from '../logo.svg';
 import { Button, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const homePage = () =>{
+const Homepage = () =>{
+  const [schedules, setSchedules] = useState([]);
+
+  // axios
+  // setSchedule()
+
     return(
         <div className="App">
           <div className='container' style={{backgroundColor: "#AB46D2"}}>
@@ -33,4 +38,4 @@ const homePage = () =>{
     )
 }
 
-export default homePage
+export default Homepage

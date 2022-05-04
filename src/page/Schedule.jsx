@@ -1,8 +1,12 @@
-import logo from '../logo.svg';
 import { Button, InputGroup, FormControl, Placeholder, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
 
-const homePage = () =>{
+const Schedule = () =>{
+  const [subjects, setSubjects] = useState([]);
+
+  // axios
+
     return(
         <div className="App">
           <div className="container">
@@ -42,4 +46,4 @@ const homePage = () =>{
     )
 }
 
-export default homePage
+export default Schedule

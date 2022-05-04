@@ -1,8 +1,7 @@
-import logo from '../logo.svg';
 import { Button, InputGroup, FormControl, Placeholder } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const homePage = () =>{
+const AddSchedule = () =>{
     return(
         <div className="App">
           <div className='container' style={{backgroundColor: "#AB46D2"}}>
@@ -13,11 +12,11 @@ const homePage = () =>{
             </InputGroup>
 
             <div className="row">
-            <Button className="mt-1 " style={{backgroundColor: "#55D8C1",height: "120px", fontSize: "70px"}}>Add</Button>
+              <Button className="mt-1 " style={{backgroundColor: "#55D8C1",height: "120px", fontSize: "70px"}}>Add</Button>
             </div>
           </div>
       </div>
     )
 }
 
-export default homePage
+export default AddSchedule

@@ -26,11 +26,11 @@ const Navigation = () => {
                   <Nav.Link style={{color: "#FCF69C"}} as={Link} to="/postpage">
                     Post
                   </Nav.Link>
-                  <Nav.Link style={{color: "#FCF69C"}} as={Link} to="/posts/tagandcategory">
-                    Tag And Category
+                  <Nav.Link style={{color: "#FCF69C"}} as={Link} to="/Register">
+                    Register
                   </Nav.Link>
-                  <Nav.Link style={{color: "#FCF69C"}} as={Link} to="/author">
-                    Author
+                  <Nav.Link style={{color: "#FCF69C"}} as={Link} to="/Login">
+                    Login
                   </Nav.Link>
                 </Nav>
               </Navbar.Collapse>
