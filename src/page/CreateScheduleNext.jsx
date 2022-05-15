@@ -2,12 +2,14 @@ import { Button, InputGroup, FormControl, Placeholder, ListGroup } from 'react-b
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-const CreateScheduleNext = () =>{
+const CreateScheduleNext = (props) =>{
+  console.log(props)
     return(
         <div className="App">
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
-            <h1 style={{fontSize: "80px"}}>Create Test Schedule</h1>
+            <h1 style={{fontSize: "80px"}}>Create </h1>
             <ListGroup >
                 <ListGroup.Item style={{height: "100px", fontSize: "50px", backgroundColor: "#FCF69C"}}>
                   Subject_1

@@ -2,6 +2,7 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from "../plugins/axios";
 import Footer from '../components/Footer';
 
 const Login = () =>{
@@ -12,10 +13,22 @@ const Login = () =>{
     console.log("Login user : " + username);
 
     // axios
-
+    axios.post('/user/login', {
+      username : username,
+      password: password,
+    })
+    .then(function (response) {
+      console.log(response);
+      localStorage.setItem("token", response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
 
     setUsername('');
     setPassword('');
+    
     console.log("Login success");
 
     window.location.href('/');

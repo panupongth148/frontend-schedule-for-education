@@ -2,6 +2,7 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from "../plugins/axios";
 import Footer from '../components/Footer';
 
 const Register = () =>{
@@ -15,6 +16,19 @@ const Register = () =>{
     console.log("register : k." + name);
 
     // axios
+    axios.post('/register', {
+      username : username,
+      name: name,
+      password: password,
+      email: email
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
 
 
     setName('');
