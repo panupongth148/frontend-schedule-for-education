@@ -1,8 +1,11 @@
 import { Button, InputGroup, FormControl, Placeholder } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from '../components/Footer';
+import { Link, useLocation } from 'react-router-dom';
 
 const AddSchedule = () =>{
+  const location = useLocation()
+  const { scheduleName } = location.state
     return(
         <div className="App">
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>

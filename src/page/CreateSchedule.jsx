@@ -22,7 +22,7 @@ const CreateSchedule = () =>{
 
             <div className="row">
             <Button className="mt-1 " style={{backgroundColor: "#55D8C1",height: "120px", fontSize: "70px"}}>
-              <Link style={{  textDecorationLine: "none", color: "white"}} to={{pathname:`/Createsc2`, state: { scheduleName: schedule }}} >Add</Link>
+              <Link style={{  textDecorationLine: "none", color: "white"}} to={{pathname:`/Createsc2`}} state={{ scheduleName: schedule }}>Add</Link>
             </Button>
             </div>
           </div>

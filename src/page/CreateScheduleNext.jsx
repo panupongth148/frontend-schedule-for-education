@@ -1,11 +1,13 @@
 import { Button, InputGroup, FormControl, Placeholder, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 const CreateScheduleNext = (props) =>{
-  console.log(props)
+  const location = useLocation()
+  const { scheduleName } = location.state
+
+  console.log(scheduleName)
     return(
         <div className="App">
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>

@@ -1,6 +1,7 @@
 import { Button, InputGroup, FormControl, Placeholder, Dropdown, Form, Control } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from '../components/Footer';
+import { Link, useLocation } from 'react-router-dom';
 import React, { Component } from 'react'
 import Select from 'react-select'
 
@@ -14,10 +15,12 @@ const options = [
   { value: 'Sundayy', label: 'Sundayy' },
 ]
 const AddSubject = () =>{
+  const location = useLocation()
+  const { scheduleName } = location.state
     return(
         <div className="App">
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
-            <h1 style={{fontSize: "80px"}}>Create Test Schecule</h1>
+            <h1 style={{fontSize: "80px"}}>Create {scheduleName} Schecule</h1>
             <Select options={options}/>
             <InputGroup className="mb-3 mt-3">
               <InputGroup.Text style={{backgroundColor: "#FCF69C", width: "150px"}}>Subject Name</InputGroup.Text>
