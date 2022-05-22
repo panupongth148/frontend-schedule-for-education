@@ -3,10 +3,10 @@ import React from "react";
 const Subject = (props) => {
     return (
         <tr>
-            <td>{ props.subject.day }</td>
-            <td>{ props.subject.name }</td>
-            <td>{ props.subject.time }</td>
-            <td><a href="www.google.com">{ props.subject.link }</a></td>
+            <td>{ props.subject.date }</td>
+            <td>{ props.subject.subject_name }</td>
+            <td>{ props.subject.period }</td>
+            <td><a href={props.subject.link} target="_blank" >{ props.subject.link }</a></td>
         </tr>
     )
 }

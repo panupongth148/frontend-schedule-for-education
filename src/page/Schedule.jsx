@@ -1,37 +1,52 @@
 import { Button, ModalHeader, ModalBody, ModalDialog, ModalFooter, Table, ModalTitle } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Subject from './../components/Subject';
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import Footer from '../components/Footer';
+import axios from "../plugins/axios";
 
 const Schedule = () => {
-  const subjectss = useParams();
+  const location = useLocation()
+  const { subjects } = location.state
 
-  console.log(subjectss);
-  const [subjects, setSubjects] = useState([
-    {
-      id: "1",
-      name: "Math",
-      day: "Monday",
-      time: "13.00-16.00",
-      link: "www.math.com"
-    },
-    {
-      id: "2",
-      name: "Human interface developer",
-      day: "Wednesday",
-      time: "9.00-12.00",
-      link: "www.Humaninterfacedeveloper.com"
-    },
-    {
-      id: "3",
-      name: "Software development tools",
-      day: "Friday",
-      time: "13.00-16.00",
-      link: "www.Softwaredevelopmenttools.com"
-    },
-  ]);
+  
+  const [subjectData, setSubjectData] = useState(null)
+
+    async function getScheduleList(){
+        let response = await axios.get(`/getsubjectbysid/${subjects}`)
+        console.log(response.data)
+        let scheduleList = response.data
+        setSubjectData(scheduleList)
+        console.log(subjectData)
+      }
+      useEffect(() => {    // Update the document title using the browser API    
+        
+        getScheduleList();
+      }, []);
+  // const [subjects, setSubjects] = useState([
+  //   {
+  //     id: "1",
+  //     name: "Math",
+  //     day: "Monday",
+  //     time: "13.00-16.00",
+  //     link: "www.math.com"
+  //   },
+  //   {
+  //     id: "2",
+  //     name: "Human interface developer",
+  //     day: "Wednesday",
+  //     time: "9.00-12.00",
+  //     link: "www.Humaninterfacedeveloper.com"
+  //   },
+  //   {
+  //     id: "3",
+  //     name: "Software development tools",
+  //     day: "Friday",
+  //     time: "13.00-16.00",
+  //     link: "www.Softwaredevelopmenttools.com"
+  //   },
+  // ]);
 
   // axios
 
@@ -48,7 +63,7 @@ const Schedule = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  { subjects.map((subject) => {
+                  { subjectData && subjectData.map((subject) => {
                     return (
                       <Subject key={subject.id} subject={subject} />
                     )

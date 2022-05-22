@@ -1,12 +1,13 @@
 import { Button, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HomepageSchedule from './../components/HomepageSchedule';
 import Footer from '../components/Footer';
-
+import axios from "../plugins/axios";
 
 const Homepage = () =>{
+  const [schedule_list, set_schedule_list] = useState(null)
   const [schedules, setSchedules] = useState([
     {
       id: "1",
@@ -67,7 +68,17 @@ const Homepage = () =>{
       userId: "2",
     },
   ]);
-
+  async function getScheduleList(){
+    let response = await axios.get(`/getallsbyid/${1}`)
+    console.log(response.data)
+    let scheduleList = response.data
+    set_schedule_list(scheduleList)
+    console.log(schedule_list)
+  }
+  useEffect(() => {    // Update the document title using the browser API    
+    
+    getScheduleList();
+  }, []);
   // axios
   // setSchedule()
 
@@ -76,7 +87,7 @@ const Homepage = () =>{
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
             <h1 style={{fontSize: "80px"}}>Schedule List</h1>
               <ListGroup >
-                { schedules.map((schedule) => {
+                { schedule_list && schedule_list.map((schedule) => {
                   return (
                     <HomepageSchedule key={schedule.id} schedule={schedule} />
                   )

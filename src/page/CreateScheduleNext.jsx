@@ -5,9 +5,9 @@ import Footer from '../components/Footer';
 
 const CreateScheduleNext = (props) =>{
   const location = useLocation()
-  const { scheduleName } = location.state
+  const { scheduleName, scheduleId } = location.state
 
-  console.log(scheduleName)
+  console.log(scheduleName +" "+ scheduleId)
     return(
         <div className="App">
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
@@ -19,7 +19,7 @@ const CreateScheduleNext = (props) =>{
               </ListGroup>
               <div className="row">
             <Button className="mt-1" style={{backgroundColor: "#55D8C1",height: "60px", fontSize: "30px"}}>
-            <Link style={{  textDecorationLine: "none", color: "white"}} to={`/Addsj`} >Add Subject</Link>
+            <Link style={{  textDecorationLine: "none", color: "white"}} to={`/Addsj`} state={{ scheduleName: scheduleName, scheduleId: scheduleId }} >Add Subject</Link>
             </Button>
           </div>
           <div className="row">
