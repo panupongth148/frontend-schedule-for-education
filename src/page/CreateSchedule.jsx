@@ -1,28 +1,32 @@
 import { Button, InputGroup, FormControl, Placeholder } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import Footer from '../components/Footer';
 import axios from "../plugins/axios";
 
 const CreateSchedule = () =>{
   const [schedule, setSchedule] = useState(null)
-  const [scheduleId, setScheduleId] = useState("")
+  const navigate = useNavigate();
+  const [scheduleId, setScheduleId] = useState(null)
   function handleChange(event) {
     console.log("test has changed")
     setSchedule(event.target.value)
     // console.log(event.target.value);
   }
-  const createSchedule = () =>{
-    axios.post('/addschedule', {
-      s_name: schedule,
+  const createSchedule = async () =>{
+    await axios.post('/addschedule', {
+      s_name: schedule, 
       account_id: 1
     }).then((res)=>{
+      console.log(res.data)
       setScheduleId(res.data.sehedule_id)
       console.log(scheduleId)
     }).catch((err)=>{
       console.log(err)
     })
+
+    // navigate('/sample', {replace: true});
   }
     return(
         <div className="App">
