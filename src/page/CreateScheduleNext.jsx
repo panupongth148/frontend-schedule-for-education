@@ -2,24 +2,44 @@ import { Button, InputGroup, FormControl, Placeholder, ListGroup } from 'react-b
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
+import axios from "../plugins/axios";
+import { useState, useEffect } from 'react';
 
 const CreateScheduleNext = (props) =>{
   const location = useLocation()
   const { scheduleName, scheduleId } = location.state
+  const [subjectData, setSubjectData] = useState(null)
 
-  console.log(scheduleName +" : "+ scheduleId)
+    async function getScheduleList(){
+        let response = await axios.get(`/getsubjectbysid/${2}`)
+        console.log(response.data)
+        let scheduleList = response.data
+        setSubjectData(scheduleList)
+        console.log(subjectData)
+      }
+      useEffect(() => {    // Update the document title using the browser API    
+        
+        getScheduleList();
+      }, []);
+  console.log(scheduleName +" = "+ scheduleId)
+  
     return(
         <div className="App">
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
             <h1 style={{fontSize: "80px"}}>Create </h1>
             <ListGroup >
-                <ListGroup.Item style={{height: "100px", fontSize: "50px", backgroundColor: "#FCF69C"}}>
-                  Subject_1
+            { subjectData && subjectData.map((subject) => {
+                    return (
+                      <ListGroup.Item style={{height: "100px", fontSize: "50px", backgroundColor: "#FCF69C"}}>
+                  {subject.subject_name}
                 </ListGroup.Item>
+                    )
+                  }) }
+                
               </ListGroup>
               <div className="row">
             <Button className="mt-1" style={{backgroundColor: "#55D8C1",height: "60px", fontSize: "30px"}}>
-            <Link style={{  textDecorationLine: "none", color: "white"}} to={`/Addsj`} state={{ scheduleName: scheduleName, scheduleId: scheduleId }} >Add Subject</Link>
+            <Link style={{  textDecorationLine: "none", color: "white"}} to={`/Addsj`} state={{ scheduleName: scheduleName, scheduleId: 2}} >Add Subject</Link>
             </Button>
           </div>
           <div className="row">
