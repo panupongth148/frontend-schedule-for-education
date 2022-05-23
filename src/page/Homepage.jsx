@@ -68,6 +68,7 @@ const Homepage = () =>{
       userId: "2",
     },
   ]);
+
   async function getScheduleList(){
     let response = await axios.get(`/getallsbyid/${1}`)
     console.log(response.data)
@@ -75,8 +76,8 @@ const Homepage = () =>{
     set_schedule_list(scheduleList)
     console.log(schedule_list)
   }
-  useEffect(() => {    // Update the document title using the browser API    
-    
+
+  useEffect(() => {    // Update the document title using the browser API
     getScheduleList();
   }, []);
   // axios

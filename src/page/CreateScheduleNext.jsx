@@ -7,7 +7,7 @@ const CreateScheduleNext = (props) =>{
   const location = useLocation()
   const { scheduleName, scheduleId } = location.state
 
-  console.log(scheduleName +" "+ scheduleId)
+  console.log(scheduleName +" : "+ scheduleId)
     return(
         <div className="App">
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
