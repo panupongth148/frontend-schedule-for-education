@@ -1,14 +1,19 @@
 import { Button, InputGroup, FormControl, Placeholder } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useNavigate} from 'react-router-dom';
+
+import { useNavigate   } from 'react-router-dom';
+
+
+
 import { useState } from 'react';
 import Footer from '../components/Footer';
 import axios from "../plugins/axios";
 
 const CreateSchedule = () =>{
   const [schedule, setSchedule] = useState(null)
-  const navigate = useNavigate();
-  const [scheduleId, setScheduleId] = useState(null)
+
+
+  let navigate = useNavigate ();
   function handleChange(event) {
     console.log("test has changed")
     setSchedule(event.target.value)
@@ -18,10 +23,10 @@ const CreateSchedule = () =>{
     await axios.post('/addschedule', {
       s_name: schedule, 
       account_id: 1
-    }).then((res)=>{
+
+    }).then(async (res)=>{
       console.log(res.data)
-      setScheduleId(res.data.sehedule_id)
-      console.log(scheduleId)
+      navigate('/Createsc2', { state: { scheduleName: schedule, scheduleId: res.data.sehedule_id } })
     }).catch((err)=>{
       console.log(err)
     })
@@ -39,7 +44,8 @@ const CreateSchedule = () =>{
 
             <div className="row">
             <Button className="mt-1 " style={{backgroundColor: "#55D8C1",height: "120px", fontSize: "70px"}} onClick={createSchedule}>
-              <Link style={{  textDecorationLine: "none", color: "white"}} to={{pathname:`/Createsc2`}} state={{ scheduleName: schedule, scheduleId: scheduleId }}>Add</Link>
+              {/* <Link style={{  textDecorationLine: "none", color: "white"}} to={{pathname:`/Createsc2`}} state={{ scheduleName: schedule, scheduleId: scheduleId }}>Add</Link> */}
+              Add
             </Button>
             </div>
           </div>
