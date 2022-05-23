@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from "../plugins/axios";
 import Footer from '../components/Footer';
+import { useNavigate   } from 'react-router-dom';
 
 const Login = () =>{
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  let navigate = useNavigate ();
   const onSubmitLogin = () => {
     console.log("Login user : " + username);
 
@@ -31,7 +32,7 @@ const Login = () =>{
     
     console.log("Login success");
 
-    window.location.href('/');
+    navigate('/')
   }
 
     return(

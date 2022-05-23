@@ -6,77 +6,16 @@ import HomepageSchedule from './../components/HomepageSchedule';
 import Footer from '../components/Footer';
 import axios from "../plugins/axios";
 
-const Homepage = () =>{
+const Homepage = (props) =>{
   const [schedule_list, set_schedule_list] = useState(null)
-  const [schedules, setSchedules] = useState([
-    {
-      id: "1",
-      title: "Midterm Year 3",
-      subjects: [
-        {
-          id: "1",
-          name: "Math",
-          day: "Monday",
-          time: "13.00-16.00",
-          link: "www.math.com"
-        },
-        {
-          id: "2",
-          name: "Human interface developer",
-          day: "Wednesday",
-          time: "9.00-12.00",
-          link: "www.Humaninterfacedeveloper.com"
-        },
-        {
-          id: "3",
-          name: "Software development tools",
-          day: "Friday",
-          time: "13.00-16.00",
-          link: "www.Softwaredevelopmenttools.com"
-        },
-      ],
-      genCode: "aeiou001",
-      userId: "2",
-    },
-    {
-      id: "2",
-      title: "Final Year 3",
-      subjects: [
-        {
-          id: "1",
-          name: "English",
-          day: "Monday",
-          time: "13.00-16.00",
-          link: "www.math.com"
-        },
-        {
-          id: "2",
-          name: "Scient",
-          day: "Wednesday",
-          time: "9.00-12.00",
-          link: "www.Humaninterfacedeveloper.com"
-        },
-        {
-          id: "3",
-          name: "Software development tools",
-          day: "Friday",
-          time: "13.00-16.00",
-          link: "www.Softwaredevelopmenttools.com"
-        },
-      ],
-      genCode: "aeiou002",
-      userId: "2",
-    },
-  ]);
-
+  const [user, setUser] = useState(null)
   async function getScheduleList(){
-    let response = await axios.get(`/getallsbyid/${1}`)
-    console.log(response.data)
+    let response = await axios.get(`/getallsbyid/${props.user.account_id}`)
+    // console.log(response.data)
     let scheduleList = response.data
     set_schedule_list(scheduleList)
-    console.log(schedule_list)
+    // console.log(schedule_list)
   }
-
   useEffect(() => {    // Update the document title using the browser API
     getScheduleList();
   }, []);
@@ -105,7 +44,7 @@ const Homepage = () =>{
           </Button>
           </div>
           </div>
-          <Footer/>
+          
       </div>
     )
 }
