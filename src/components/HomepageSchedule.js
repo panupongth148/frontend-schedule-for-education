@@ -12,7 +12,7 @@ const HomepageSchedule = (props) => {
                     fontSize: "20px",
                 }}
                 to={`/Schedule`}
-                state={{ subjects: props.schedule.schedule_id }}
+                state={{ schedule: props.schedule }}
                 className="has-text-grey-darker"
             >
                 <li>

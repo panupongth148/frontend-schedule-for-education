@@ -18,15 +18,15 @@ const CreateScheduleNext = (props) =>{
     console.log(subjectData)
   }
   
-  useEffect(() => {    // Update the document title using the browser API    
+  useEffect(() => { // Update the document title using the browser API
     getScheduleList();
-  }, []);
+  }, [setSubjectData]);
   console.log(scheduleName +" = "+ scheduleId)
   
   return(
       <div className="App">
         <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
-          <h1 style={{fontSize: "80px"}}>Create </h1>
+          <h1 style={{fontSize: "80px"}}>Add Subject</h1>
           <ListGroup >
           { subjectData && subjectData.map((subject) => {
                   return (

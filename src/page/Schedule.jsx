@@ -2,15 +2,14 @@ import { Button, ModalHeader, ModalBody, ModalDialog, ModalFooter, Table, ModalT
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import Subject from './../components/Subject';
-import { useParams, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import Footer from '../components/Footer';
 import axios from "../plugins/axios";
 
 const Schedule = () => {
   const location = useLocation()
-  const { subjects } = location.state
-  const schedule_id = subjects
-  console.log(schedule_id)
+  const { schedule } = location.state
+  const schedule_id = schedule.schedule_id
   const navigate = useNavigate();
   
   const [subjectData, setSubjectData] = useState(null)
@@ -52,6 +51,8 @@ const Schedule = () => {
   return(
     <div className="App">
       <div className="container mt-5">
+        <h2>{schedule.s_name}</h2>
+        <p><b>Code:</b> {schedule.code}</p>
         <Table striped bordered hover className='mt-5'>
             <thead>
               <tr>
@@ -69,7 +70,11 @@ const Schedule = () => {
               }) }
             </tbody>
           </Table>
+          <Button variant="success" style={{width: "100%", marginBottom: "5px"}}>
+            <Link style={{  textDecorationLine: "none", color: "white"}} to={`/Createsc2`} state={{ scheduleName: schedule.s_name, scheduleId: schedule_id}} >Add Subject</Link>
+          </Button>
           <Button variant="danger" style={{width: "100%"}} onClick={() => handleDeleteButton("visible")}>Delete this schedule</Button>
+          
           <ModalDialog style={{visibility: deleteStatus}}>
             <ModalHeader closeButton>
               <ModalTitle>Confirm to delete this schedule.</ModalTitle>
