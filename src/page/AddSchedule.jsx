@@ -34,7 +34,9 @@ const AddSchedule = () =>{
           <div className='container mt-5' style={{backgroundColor: "#AB46D2"}}>
             <h1 style={{fontSize: "80px"}}>Add Schedule</h1>
             <InputGroup className="mb-3">
-              <InputGroup.Text style={{backgroundColor: "#FCF69C"}}>Schedule Code</InputGroup.Text>
+              <InputGroup.Text style={{ backgroundColor: "#FCF69C" }}>
+                Schedule Code
+              </InputGroup.Text>
               <FormControl style={{height: "60px", fontSize: "40px"}} placeholder="Please enter schedule code like SABA001. " aria-label="ScheduleCode" onChange={(e) => {setCode(e.target.value)}}/>
             </InputGroup>
 

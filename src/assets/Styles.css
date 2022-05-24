@@ -1,0 +1,29 @@
+#logo {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+#form {
+    background-color: rgb(255, 255, 255, 0.45);
+    width: 500px;
+    height: 300px;
+    margin: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    #logo {
+        width: auto;
+        height: 150px;
+        margin: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #form {
+        background-color: rgb(255, 255, 255, 0.45);
+        width: auto;
+        height: 350px;
+        margin: 20px;
+    }
+}
