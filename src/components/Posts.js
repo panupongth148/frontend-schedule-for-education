@@ -1,8 +1,12 @@
+import React from "react";
+
 export const Posts = ({ posts, refetch }) => (
   <section>
     <h4>
       Posts&nbsp;
-      <button type="button" onClick={() => refetch({ postLimit: 4 })}>Refetch posts</button>
+      <button type="button" onClick={() => refetch({ postLimit: 4 })}>
+        Refetch posts
+      </button>
     </h4>
     <div>
       {posts.map((post) => (
@@ -14,4 +18,4 @@ export const Posts = ({ posts, refetch }) => (
       ))}
     </div>
   </section>
-)
+);

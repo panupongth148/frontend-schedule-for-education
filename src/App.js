@@ -1,9 +1,8 @@
-import { gql, useQuery } from '@apollo/client';
+import React from "react";
+import { gql, useQuery } from "@apollo/client";
 
-import './App.css';
-import { CreatePost } from './components/CreatePost';
-import { Posts } from './components/Posts'
-import Navigation from './components/navigation';
+import "./App.css";
+import Navigation from "./components/navigation";
 // const POSTS_QUERY = gql`
 // query ($postLimit: Int) {
 //   posts (limit: $postLimit sort: _ID_DESC) {
@@ -42,6 +41,6 @@ const App = () => {
     // </main>
     <Navigation />
   );
-}
+};
 
 export default App;
