@@ -61,8 +61,8 @@ const AddSubject = () => {
   return (
     <div className="App">
       <div className="container mt-5" style={{ backgroundColor: "#AB46D2" }}>
-        <h1 style={{ fontSize: "80px" }}>Create test Schecule</h1>
-        <Select options={options} onChange={handleChange} />
+        <h1 style={{ fontSize: "80px" }}>Subject</h1>
+        <Select options={options} onChange={handleChange} defaultValue="Monday" />
         <InputGroup className="mb-3 mt-3">
           <InputGroup.Text
             style={{ backgroundColor: "#FCF69C", width: "150px" }}
