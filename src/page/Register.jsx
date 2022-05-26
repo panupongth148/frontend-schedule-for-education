@@ -1,63 +1,67 @@
-import { Button, InputGroup, FormControl } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import { Button, InputGroup, FormControl } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
 import axios from "../plugins/axios";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 import "../assets/Styles.css";
-import { useNavigate } from 'react-router-dom';
+import itlogo from "../assets/picture/it-logo.png";
+import { useNavigate } from "react-router-dom";
 import { FlexContainer, Box } from "../components/Components";
 
-const Register = () =>{
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [email, setEmail] = useState('');
+const Register = () => {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   const onSubmitRegister = () => {
     console.log("register : k." + name);
-    
-    // axios
-    axios.post('/register', {
-      username : username,
-      name: name,
-      password: password,
-      email: email
-    })
-    .then(function (response) {
-      console.log(response);
-      setName('');
-      setUsername('');
-      setPassword('');
-      setConfirmPassword('');
-      setEmail('');
-      console.log("register success");
-      alert(response)
-  
-      navigate('/Login');
-    })
-    .catch(function (error) {
-      console.log(error);
-      alert(error)
-    });
-  }
 
-  return(
+    // axios
+    axios
+      .post("/register", {
+        username: username,
+        name: name,
+        password: password,
+        email: email,
+      })
+      .then(function (response) {
+        console.log(response);
+        setName("");
+        setUsername("");
+        setPassword("");
+        setConfirmPassword("");
+        setEmail("");
+        console.log("register success");
+        alert(response);
+
+        navigate("/Login");
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert(error);
+      });
+  };
+
+  return (
     <>
       <FlexContainer>
         <Box>
-          <img
-            id="logo"
-            src="https://www.it.kmitl.ac.th/wp-content/uploads/2017/12/it-logo.png"
-            alt="it-logo"
-          />
-          <form class="box" id="form">
+          <img id="logo" src={itlogo} alt="it-logo" />
+          <form class="box" id="formRegister">
             <h1 class="title has-text-centered">Register</h1>
             <div class="field">
               <label class="label">Name</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Owen" value={ name } onChange={ (e) => setName(e.target.value) } />
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Owen"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </div>
             </div>
             <div class="field">
@@ -67,8 +71,8 @@ const Register = () =>{
                   class="input"
                   type="email"
                   placeholder="Owenza@gmail.com"
-                  value={ email }
-                  onChange={ (e) => setEmail(e.target.value) }
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -79,8 +83,8 @@ const Register = () =>{
                   class="input"
                   type="text"
                   placeholder="e.g. Owensudhod"
-                  value={ username }
-                  onChange={ (e) => setUsername(e.target.value) }
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
             </div>
@@ -88,18 +92,35 @@ const Register = () =>{
             <div class="field">
               <label class="label">Password</label>
               <div class="control">
-                <input class="input" type="password" placeholder="********" value={ password } onChange={ (e) => setPassword(e.target.value) } />
+                <input
+                  class="input"
+                  type="password"
+                  placeholder="********"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
             </div>
 
             <div class="field">
               <label class="label">Confirm Password</label>
               <div class="control">
-                <input class="input" type="password" placeholder="********" value={ confirmPassword } onChange={ (e) => setConfirmPassword(e.target.value) } />
+                <input
+                  class="input"
+                  type="password"
+                  placeholder="********"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
               </div>
             </div>
 
-            <Button class="button is-primary is-fullwidth" onClick={ () => onSubmitRegister() }>Sign up</Button>
+            <button
+              class="button is-link is-fullwidth"
+              onClick={() => onSubmitRegister()}
+            >
+              Sign up
+            </button>
           </form>
         </Box>
       </FlexContainer>
@@ -138,7 +159,7 @@ const Register = () =>{
     //   </div>
     //   <Footer/>
     // </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

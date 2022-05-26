@@ -1,51 +1,55 @@
-import { Button, InputGroup, FormControl } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import { Button, InputGroup, FormControl } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
 import axios from "../plugins/axios";
-import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
+import Footer from "../components/Footer";
+import { useNavigate, Navigate } from "react-router-dom";
 import "../assets/Styles.css";
+import itlogo from "../assets/picture/it-logo.png";
 import { FlexContainer, Box } from "../components/Components";
 
-const Login = () =>{
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  let navigate = useNavigate ();
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
+  let navigate = useNavigate();
 
-  const onSubmitLogin = () => {
+  const onSubmitLogin = (event) => {
+    event.preventDefault();
     console.log("Login user : " + username);
 
     // axios
-    axios.post('/user/login', {
-      username : username,
-      password: password,
-    })
-    .then(function (response) {
-      console.log(response);
-      localStorage.setItem("token", response.data)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
-    setUsername('');
-    setPassword('');
-    
-    console.log("Login success");
+    axios
+      .post("/user/login", {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data);
+        setLogin(true);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    navigate('/', {})
+    setUsername("");
+    setPassword("");
+
+    console.log("Login success");
+    // navigate("/", {});
+  };
+
+  if (login) {
+    return <Navigate to="/" />;
   }
 
-  return(
+  return (
     <>
       <FlexContainer>
         <Box>
-          <img
-            id="logo"
-            src="https://www.it.kmitl.ac.th/wp-content/uploads/2017/12/it-logo.png"
-            alt="it-logo"
-          />
-          <form id="form" class="box">
+          <img id="logo" src={itlogo} alt="it-logo" />
+          <form id="formLogin" class="box" onSubmit={onSubmitLogin}>
             <h1 class="title has-text-centered">Login</h1>
             <div class="field">
               <label class="label">Username</label>
@@ -54,8 +58,8 @@ const Login = () =>{
                   class="input"
                   type="text"
                   placeholder="e.g. Owensudhod"
-                  value={ username }
-                  onChange={ (e) => setUsername(e.target.value) }
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
             </div>
@@ -67,17 +71,14 @@ const Login = () =>{
                   class="input"
                   type="password"
                   placeholder="********"
-                  value={ password }
-                  onChange={ (e) => setPassword(e.target.value) }
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
-            <Button
-              class="button is-primary is-fullwidth"
-              onClick={ () => onSubmitLogin() }
-            >
+            <button type="submit" class="button is-link is-fullwidth">
               Sign in
-            </Button>
+            </button>
           </form>
         </Box>
       </FlexContainer>
@@ -106,7 +107,7 @@ const Login = () =>{
     //   </div>
     //   <Footer/>
     // </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

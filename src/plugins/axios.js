@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3330/',
-})
+  baseURL: "http://localhost:3330/",
+});
 
 // instance.interceptors.request.use(
 //     function (config) {
@@ -17,4 +17,4 @@ const instance = axios.create({
 //     }
 // );
 
-export default instance
+export default instance;

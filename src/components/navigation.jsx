@@ -1,10 +1,8 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import axios from "../plugins/axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
 
 import HomePage from "../page/Homepage";
 import AddSchedule from "../page/AddSchedule";
@@ -15,33 +13,33 @@ import Login from "../page/Login";
 import Register from "../page/Register";
 import Schedule from "../page/Schedule";
 
-const Navigation = () => {
-  const [user, setUser] = useState(null)
+const Navigation = (props) => {
+  const [user, setUser] = useState(null);
 
-  async function getUserByToken(){
-    const token = localStorage.getItem('token');
-    console.log(token)
-    if(token){
-      console.log(token)
+  async function getUserByToken() {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      console.log(token);
       let response = await axios.get(`getuserbytoken`, {
         params: {
-          token: token
-        }
-      })
-      setUser(response.data)
+          token: token,
+        },
+      });
+      setUser(response.data);
     }
-    
   }
 
-  useEffect(() => {    // Update the document title using the browser API
-    getUserByToken()
+  useEffect(() => {
+    // Update the document title using the browser API
+    getUserByToken();
   }, []);
 
-  const logout = () =>{
-    localStorage.removeItem('token'); 
+  const logout = () => {
+    localStorage.removeItem("token");
     window.location.reload(false);
-  }
-  console.log(user)
+  };
+  console.log(user);
 
   return (
     <>
@@ -62,34 +60,71 @@ const Navigation = () => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              { !user && <Nav className="me-auto">
-                <Nav.Link style={{color: "#FCF69C"}} as={Link} to="/Register">
-                  Register
-                </Nav.Link>
-                <Nav.Link style={{color: "#FCF69C"}} as={Link} to="/Login">
-                  Login
-                </Nav.Link>
-              </Nav>}
-              { user && <Nav className="me-auto">
-                <Nav.Link style={{color: "#FCF69C"}}>
-                  {user[0].name}
-                </Nav.Link>
-                <Nav.Link style={{color: "#FCF69C"}} onClick={logout}  to="/">
-                  Logout
-                </Nav.Link>
-              </Nav>}
+              <Nav className="me-auto"></Nav>
+              {!user && (
+                <Nav>
+                  <Nav.Link
+                    style={{ color: "#FCF69C" }}
+                    as={Link}
+                    to="/Register"
+                  >
+                    Register
+                  </Nav.Link>
+                  <Nav.Link style={{ color: "#FCF69C" }} as={Link} to="/Login">
+                    Login
+                  </Nav.Link>
+                </Nav>
+              )}
+              {user && (
+                <Nav>
+                  <Nav.Link style={{ color: "#FCF69C" }}>
+                    {user[0].name}
+                  </Nav.Link>
+                  <Nav.Link
+                    style={{ color: "#FCF69C" }}
+                    onClick={logout}
+                    to="/"
+                  >
+                    Logout
+                  </Nav.Link>
+                </Nav>
+              )}
             </Navbar.Collapse>
           </Container>
         </Navbar>
         <Routes>
-          <Route name="home"  path="/" element={<HomePage/>}></Route>
-          <Route name="AddSchedule" path="/AddSc" element={<AddSchedule/>}></Route>
-          <Route name="CreateSchedule" path="/CreateSc" element={<CreateSchedule/>}></Route>
-          <Route name="CreateScheduleNext" path="/CreateSc2" element={<CreateScheduleNext/>}></Route>
-          <Route name="AddSubject" path="/AddSj" element={<AddSubject/>}></Route>
-          <Route name="Login" path="/Login" element={<Login/>}></Route>
-          <Route name="Register" path="/Register" element={<Register/>}></Route>
-          <Route name="Schedule" path="/Schedule" element={<Schedule/>}></Route>
+          <Route exact name="home" path="/" element={<HomePage />}></Route>
+          <Route
+            name="AddSchedule"
+            path="/AddSc"
+            element={<AddSchedule />}
+          ></Route>
+          <Route
+            name="CreateSchedule"
+            path="/CreateSc"
+            element={<CreateSchedule />}
+          ></Route>
+          <Route
+            name="CreateScheduleNext"
+            path="/CreateSc2"
+            element={<CreateScheduleNext />}
+          ></Route>
+          <Route
+            name="AddSubject"
+            path="/AddSj"
+            element={<AddSubject />}
+          ></Route>
+          <Route name="Login" path="/Login" element={<Login />}></Route>
+          <Route
+            name="Register"
+            path="/Register"
+            element={<Register />}
+          ></Route>
+          <Route
+            name="Schedule"
+            path="/Schedule"
+            element={<Schedule />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>
