@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../plugins/axios";
+import { gql, useQuery } from '@apollo/client';
 
 import HomePage from "../page/Homepage";
 import AddSchedule from "../page/AddSchedule";

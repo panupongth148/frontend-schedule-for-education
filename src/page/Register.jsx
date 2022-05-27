@@ -1,12 +1,29 @@
 import { Button, InputGroup, FormControl } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
-import axios from "../plugins/axios";
+import React, { useState, useCallback } from "react";
 import Footer from "../components/Footer";
 import "../assets/Styles.css";
 import itlogo from "../assets/picture/it-logo.png";
 import { useNavigate } from "react-router-dom";
 import { FlexContainer, Box } from "../components/Components";
+import { gql, useQuery, useMutation } from '@apollo/client';
+
+const CREATE_USER_MUTATION = gql`
+mutation ($record: CreateOneUserInput!){
+  createUser(record: $record){
+    recordId
+  }
+}
+`
+
+const USERS_QUERY = gql`
+query{
+  users{
+		username,
+    password
+  }
+}
+`
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -14,35 +31,94 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
+  const { data } = useQuery(USERS_QUERY)
+  const [createUserMutation] = useMutation(CREATE_USER_MUTATION)
   const navigate = useNavigate();
 
-  const onSubmitRegister = () => {
+  // const onSubmitRegister = useCallback(
+  //   async (e) => {
+  //     e.preventDefault()
+  //     try {
+  //       console.log(name)
+  //       console.log(username)
+  //       await createUserMutation({
+  //         variables: {
+  //           record: {
+  //             username,
+  //             password,
+  //             name,
+  //             email
+  //           },
+  //         },
+  //       })
+  //       setName("");
+  //       setUsername("");
+  //       setPassword("");
+  //       setConfirmPassword("");
+  //       setEmail("");
+  //       console.log("register success");
+  //       // alert(response);
+  //       navigate("/Login");
+  //     } catch (err) {
+  //       console.error(err)
+  //     }
+  //   },
+  //   [username, password, name, email],
+  // )
+  console.log(data)
+  const onSubmitRegister = async () => {
     console.log("register : k." + name);
 
+    try {
+      console.log(name)
+      console.log(username)
+      console.log(email)
+      await createUserMutation({
+        variables: {
+          record: {
+            username,
+            password,
+            name,
+            email
+          },
+        },
+      })
+      console.log("register success pre")
+      setName("");
+      setUsername("");
+      setPassword("");
+      setConfirmPassword("");
+      setEmail("");
+      console.log("register success");
+      // alert(response);
+      // navigate("/Login");
+    } catch (err) {
+      console.error(err)
+    }
+    // // axios
     // axios
-    axios
-      .post("/register", {
-        username: username,
-        name: name,
-        password: password,
-        email: email,
-      })
-      .then(function (response) {
-        console.log(response);
-        setName("");
-        setUsername("");
-        setPassword("");
-        setConfirmPassword("");
-        setEmail("");
-        console.log("register success");
-        alert(response);
+    //   .post("/register", {
+    //     username: username,
+    //     name: name,
+    //     password: password,
+    //     email: email,
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //     setName("");
+    //     setUsername("");
+    //     setPassword("");
+    //     setConfirmPassword("");
+    //     setEmail("");
+    //     console.log("register success");
+    //     alert(response);
 
-        navigate("/Login");
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert(error);
-      });
+    //     navigate("/Login");
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     alert(error);
+    //   });
   };
 
   return (

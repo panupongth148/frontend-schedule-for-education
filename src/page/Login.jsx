@@ -7,6 +7,12 @@ import { useNavigate, Navigate } from "react-router-dom";
 import "../assets/Styles.css";
 import itlogo from "../assets/picture/it-logo.png";
 import { FlexContainer, Box } from "../components/Components";
+import Cookies from 'js-cookie'
+
+import { gql, useQuery } from '@apollo/client';
+
+// const LOGIN = gql``
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
