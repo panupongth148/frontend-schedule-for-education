@@ -1,12 +1,21 @@
 import { Button, InputGroup, FormControl } from "react-bootstrap";
+import { gql, useMutation  } from '@apollo/client';
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "../plugins/axios";
 import Footer from "../components/Footer";
 import "../assets/Styles.css";
 import itlogo from "../assets/picture/it-logo.png";
 import { useNavigate } from "react-router-dom";
 import { FlexContainer, Box } from "../components/Components";
+
+const REGISTER_MUTATION = gql`
+  mutation ($record: CreateOneUserInput!) {
+    createUser(record : $record) {
+      recordId
+    }
+  }
+`
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -16,34 +25,68 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const onSubmitRegister = () => {
-    console.log("register : k." + name);
+  const [registerMutation] = useMutation(REGISTER_MUTATION);
+  const onSubmitRegister = useCallback(
+    async () => {
+      console.log(password, ":", confirmPassword)
+      if (password !== confirmPassword) {
+        alert("please check confirm password");
+      } else if (password === confirmPassword) {
+        console.log('inif');
+        try {
+          await registerMutation({
+            variables: {
+              record: {
+                username,
+                password,
+                name,
+                email,
+              },
+            },
+          })
+          console.log('endmut')
+          setUsername('')
+          setPassword('')
+          setConfirmPassword('')
+          setName('')
+          setEmail('')
+          console.log('register success')
+          alert('register success');
+          navigate("/Login");
+        } catch (err) {
+          console.error(err)
+        }
+        window.location.href('/');
+      }
+    }, [username, password, name, email, registerMutation, confirmPassword]
+  )
 
-    // axios
-    axios
-      .post("/register", {
-        username: username,
-        name: name,
-        password: password,
-        email: email,
-      })
-      .then(function (response) {
-        console.log(response);
-        setName("");
-        setUsername("");
-        setPassword("");
-        setConfirmPassword("");
-        setEmail("");
-        console.log("register success");
-        alert(response);
+  // const onSubmitRegister = () => {
+  //   console.log("register : k." + name);
 
-        navigate("/Login");
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert(error);
-      });
-  };
+  //   // axios
+  //   axios
+  //     .post("/register", {
+  //       username: username,
+  //       name: name,
+  //       password: password,
+  //       email: email,
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //       setName("");
+  //       setUsername("");
+  //       setPassword("");
+  //       setConfirmPassword("");
+  //       setEmail("");
+  //       console.log("register success");
+  //       
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       alert(error);
+  //     });
+  // };
 
   return (
     <>
